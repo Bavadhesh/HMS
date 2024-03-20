@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+   {%load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href ="{% static '/login.css' %}" >
+    <title>Login</title>
+
+   
+</head>
+<body>
+   <div style="width: 100%;height: 9vh;background-color: black;color:aliceblue;font-size: 2rem;font-weight: 700;text-align: center;">Medical Staff Login</div> 
+     <form method="post">
+        {% csrf_token %}  
+        <div class="container">
+          <label for="uname"><b>Email Id</b></label>
+          <input type="text" placeholder="Enter Email Id" name="Email" required>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="Password" required>
+      
+          <button type="submit">Login</button>
+          
+        </div>
+      {%if problem%}
+          <div style="color:red">{{problemStatement}}</div>
+            {%endif%}
+        
+      </form>
+
+    <script type="text/javascript">
+        if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+    </script>
+</body>
+</html>

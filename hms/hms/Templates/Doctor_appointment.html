@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <link rel="stylesheet" href='{% static 'main.css' %}'>
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+   </head>
+<body>
+ <div class="sidebar close">
+    <div class="logo-details">
+     
+      <span class="logo_name">Apollo Doctor Portal</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="/login/doctor/auth/">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Dashboard</a></li>
+        </ul>
+      </li>
+      
+      
+      <li>
+        <a href="">
+            <i class='bx bx-list-ul'></i>
+          <span class="link_name">Appointments</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="">Appointments</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/login/doctor/auth/diagonose/">
+          <i class='bx bx-heart'></i>
+          <span class="link_name">Diagonose</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Diagonose</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/logout">
+           <i class='bx bx-log-out'></i>
+          <span class="link_name">Log out</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/logout">Log out</a></li>
+        </ul>
+      </li>
+      
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">Appointments</span>
+      </div>
+    </div>
+    <div class="outerFrame">
+      <!-- Outer box starts here -->
+      <!-- Loop here -->
+    {% for Appointments in appointments %}
+    <div class="Sched">
+      <br> 
+      
+      <div style="flex: 1; margin: 5px;">
+        {{Appointments.appointment_date}}
+      </div>
+      
+      <div style="flex: 1; margin: 5px;">
+        {{Appointments.appointment_time}}
+      </div>
+      
+      <div   style="flex: 3; margin: 5px;">
+        {{Appointments.description}}
+      </div>
+      
+      <!-- Description goes here -->
+      
+      <button class="cancelAppointment">Cancel</button>
+
+    </div>
+    {% endfor      %}
+    
+  
+  <!-- Outer box ends here -->
+  </div>
+  
+</div>
+        
+                    
+  </section>
+
+ 
+
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+
+  
+  </script>
+</body>
+</html>

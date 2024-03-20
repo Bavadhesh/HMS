@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+{%load static%}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <link rel="stylesheet" href="{% static '\style.css'%}">
+    <!-- Boxiocns CDN Link -->
+    
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+   <div class="sidebar close">
+    <div class="logo-details">
+     
+      <span class="logo_name">Apollo Patient Portal</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Dashboard</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-collection' ></i>
+            <span class="link_name">Medical Reports</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">Medical Reports</a></li>
+          <li><a href="/DiagonosisReport/">Diagonosis Report</a></li>
+          <li><a href="/Prescriptions/">Prescriptions</a></li>
+         
+        </ul>
+      </li>
+      
+      <li>
+        <a href="\login\TreatmentPlan\">
+            <i class='bx bx-list-ul'></i>
+          <span class="link_name">Treatment Plan</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="\login\TreatmentPlan\">Treatment Plan</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">
+            <i class='bx bx-rupee'></i>
+          <span class="link_name">Payment</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Payment</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/logout">
+           <i class='bx bx-log-out'></i>
+          <span class="link_name">Log out</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/logout">Log out</a></li>
+        </ul>
+      </li>
+      
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">Diagonosis Report</span>
+      </div>
+    </div>
+
+  <div class = "report-list">
+  {% for k in Documents%}
+    <div class="Diagonosis-report-list-item">
+ 
+      <div class="Diagonosis-report-list-container">
+          <div>{{k.Document}}</div>
+          <div>{{k.uploaded_time}}</div>
+          
+          <div> <a href = "/{{k.patient_id}}/{{k.Document}}"><button class="report-button">Download</button></a></div>
+          </div>
+     
+      </div>
+       {% endfor %}
+
+
+
+    
+  </section>
+
+ 
+
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+
+ 
+  </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <link rel="stylesheet" href='{% static 'main.css'%}'>
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+ <div class="sidebar close">
+    <div class="logo-details">
+     
+      <span class="logo_name">Apollo Laboratory Technician Portal</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Dashboard</a></li>
+        </ul>
+      </li>
+      
+    <li>
+        <a href="ReportUpload/">
+            <i class='bx bx-file'></i>
+          <span class="link_name">Upload Patient Reports</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="ReportUpload/">Upload Patient Reports</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/logout">
+           <i class='bx bx-log-out'></i>
+          <span class="link_name">Log out</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/logout">Log out</a></li>
+        </ul>
+      </li>
+      
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">Laboratory Technician Profile</span>
+      </div>
+    </div>
+   
+    <div class="card">
+      <div class="container">
+                    <!--Profile photo-->
+                   <div class = "image-area"> 
+                    <div class="profile">
+                      <img class = "profile-image" src="{{lab_technologist.profile_photo.url}}"></img>
+                     
+                    </div>
+                    </div>
+
+                   <div style="font-weight:600" class="Info">
+                    <!--Patient Details-->
+                    
+                    <br>
+                    <div>Employee Id : {{lab_technologist.id}}</div>
+                    <br>
+                   
+                    <div>Name : {{lab_technologist.name}}  </div>
+                    <br>
+                   
+                   
+                    
+                    <div>Designation: {{lab_technologist.designation}} </div>
+                    <br>
+                   
+                     <div>Contact No: {{lab_technologist.mobile_no}}</div>
+                    <br>
+                    
+                    <div>Email Id: {{lab_technologist.email_address}}</div>
+                    <br>
+                   
+
+                     </div>
+                
+
+
+      </div>
+    </div>
+  
+                    
+  </section>
+
+ 
+
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+
+  
+  </script>
+</body>
+</html>

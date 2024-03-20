@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!-- Created by CodingLab |www.youtube.com/CodingLabYT-->
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <!--<title> Drop Down Sidebar Menu | CodingLab </title>-->
+    <link rel="stylesheet" href='{% static 'main.css' %}'>
+    <!-- Boxiocns CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <!-- CSS -->
+     <style>
+        /* CSS styles */
+        .card {
+          width: 300px;
+          background-color: #f4f4f4;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    
+        .form-group {
+          margin-bottom: 15px;
+        }
+    
+        .form-group label {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+    
+        .form-group input {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+    
+        .form-group input[type="submit"] {
+          background-color: #4CAF50;
+          color: white;
+          cursor: pointer;
+        }
+
+        
+        
+      </style>
+     <!--  -->
+   </head>
+<body>
+ <div class="sidebar close">
+    <div class="logo-details">
+     
+      <span class="logo_name">Apollo Laboratory Technician Portal</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <span class="link_name">Dashboard</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Dashboard</a></li>
+        </ul>
+      </li>
+      
+      
+      <li>
+        <a href="">
+            <i class='bx bx-list-ul'></i>
+          <span class="link_name">Appointments</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="">Appointments</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="">
+            <i class='bx bx-file'></i>
+          <span class="link_name">Upload Patient Reports</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Upload Patient Reports</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="/logout">
+           <i class='bx bx-log-out'></i>
+          <span class="link_name">Log out</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="/logout">Log out</a></li>
+        </ul>
+      </li>
+      
+  </div>
+  <section class="home-section">
+    <div class="home-content">
+      <i class='bx bx-menu' ></i>
+      <span class="text">Medical report upload</span>
+      </div>
+    </div>
+   
+  <div style="width: 100%;height: 100vh; display: flex; flex-direction: column; align-items: center;">
+
+    <div class="card">
+        <h2>Report Upload</h2>
+        <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="patient_id" class="form-label">Patient ID:</label>
+            <input type="text" class="form-control" id="patient_id" name="patient_id" required>
+            <label for="patient_id" class="form-label">Doctor ID:</label>
+            <input type="text" class="form-control" id="doctor_id" name="doctor_id" required>
+            <div class="invalid-feedback">
+              Please provide a valid patient ID.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="report_file" class="form-label">Diagnosis Report File:</label>
+            <input type="file" class="form-control" id="report_file" name="report_file" required>
+            <div class="invalid-feedback">
+              Please choose a diagnosis report file.
+            </div>
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+      </div>
+    </div>
+                    
+  </section>
+
+ 
+
+  <script>
+  let arrow = document.querySelectorAll(".arrow");
+  for (var i = 0; i < arrow.length; i++) {
+    arrow[i].addEventListener("click", (e)=>{
+   let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
+   arrowParent.classList.toggle("showMenu");
+    });
+  }
+  let sidebar = document.querySelector(".sidebar");
+  let sidebarBtn = document.querySelector(".bx-menu");
+  console.log(sidebarBtn);
+  sidebarBtn.addEventListener("click", ()=>{
+    sidebar.classList.toggle("close");
+  });
+
+    
+  document.getElementById('file-upload').addEventListener('change', function(e) {
+  var file = e.target.files[0];
+  var progressBar = document.getElementById('progress-bar');
+  var reader = new FileReader();
+
+  reader.onloadstart = function() {
+    progressBar.style.width = '0%';
+  };
+
+  reader.onprogress = function(e) {
+    if (e.lengthComputable) {
+      var percentLoaded = Math.round((e.loaded / e.total) * 100);
+      progressBar.style.width = percentLoaded + '%';
+
+      if (percentLoaded === 100) {
+        progressBar.innerHTML = 'Upload Complete!';
+        progressBar.classList.add('complete');
+      } else {
+        progressBar.innerHTML = percentLoaded + '%';
+        progressBar.classList.remove('complete');
+      }
+    }
+  };
+
+  reader.onload = function() {
+    progressBar.style.width = '100%';
+    progressBar.innerHTML = 'Upload Complete!';
+    progressBar.classList.add('complete');
+  };
+
+  reader.readAsDataURL(file);
+});
+
+  
+  </script>
+</body>
+</html>
